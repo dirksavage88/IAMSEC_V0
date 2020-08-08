@@ -1,0 +1,25 @@
+!#/bin/sh
+#All code was tested on Raspbian Stretch version 9
+#installs required modules for Indoor Air Monitor Security (24/7 housesitter)
+#IMPORTANT: Make sure I2C is enabled in raspi-config or preferences, reboot as necessary
+echo "Ensure I2C is enabled in raspi-config or preferences!"
+#You will need python3 for all the required sensor libraries
+sudo apt-get install python3-pip
+#VL53L1X Time of Flight presence detection library
+sudo pip install smbus2
+sudo pip install vl53l1x
+#Adafruit blink library is a dependency
+sudo pip3 install RPI.GPIO
+sudo pip3 install adafruit-blinka
+#Adafruit STEMMA Soil Sensor library
+sudo pip3 install adafruit-circuitpython-seesaw
+#BME680 gas sensor library
+sudo pip3 install adafruit-circuitpython-bme680
+#amazon sns boto3 sdk
+sudo pip install boto3
+#Soracom IoT modem setup (from IoT starter kit instructions, courtesy Soracom)
+#https://www.soracom.io/iot-starter-kit/
+sudo curl -O https://soracom-files.s3.amazonaws.com/starterkit/setup.sh
+sudo chmod +x setup.sh
+sudo ./setup.sh
+echo "All required libraries and install scripts have completed"
